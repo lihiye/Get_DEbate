@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <link data-require="datatables.bootstrap@*" data-semver="1.10.7" rel="stylesheet" href="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" />
+    <link data-require="bootstrap-css@3.3.6" data-semver="4.0.0-alpha.2" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
+    <script data-require="datatables.bootstrap@*" data-semver="1.10.7" src="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script data-require="datatables@*" data-semver="1.10.12" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link data-require="fontawesome@*" data-semver="4.5.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body onload="fnHideAddRow();">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <a href="#" onclick="fnShowAddRow()" class="btn btn-primary">הוספת דיון</a>
+        <table id="example" class="table table-hover" style="border: solid #eeeeee;">
+          <thead>
+            <tr>
+              <th>Is PO?</th>
+              <th>Part Number</th>
+              <th>Quantity</th>
+              <th>Inspection Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="newRow">
+              <td>
+                <input id="t1" type="checkbox" />
+              </td>
+              <td>
+                <input id="t2" type="text" />
+              </td>
+              <td>
+                <input id="t3" type="text" />
+              </td>
+              <td>
+                <input id="t4" type="text" />
+              </td>
+              <td nowrap>
+                <input id="t5" type="text" />
+                <a href="#" onclick="fnClickAddRow()" class="btn btn-success btn-xs">
+                  <i class="fa fa-plus"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>PO </td>
+              <td>Part </td>
+              <td>Qty </td>
+              <td>Inspection </td>
+              <td>Comments </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </body>
+
+</html>
+
+
+
+
+
+<script>
+var newPO = 1;
+
+function fnHideAddRow() {
+    $('.newRow').hide();
+}
+
+function fnShowAddRow() {
+    $('.newRow').show();
+}
+
+$(document)
+    .ready(function() {
+        $('#example').dataTable();
+    });
+
+function fnClickAddRow() {
+    $('#example')
+        .dataTable()
+        .fnAddData([
+            document.getElementById("t1").value,
+            document.getElementById("t2").value,
+            document.getElementById("t3").value,
+            document.getElementById("t4").value,
+            document.getElementById("t5").value]);
+
+            document.getElementById("t1").value = '';
+            document.getElementById("t2").value = '';
+            document.getElementById("t3").value = '';
+            document.getElementById("t4").value = '';
+            document.getElementById("t5").value = '';
+
+    $('.newRow').hide();
+
+}
+</script>
